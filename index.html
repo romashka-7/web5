@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор стоимости заказа</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Калькулятор стоимости</h1>
+        <div class="calculator">
+            <label>Количество товара:</label>
+            <input type="number" id="quantity" min="1" value="1">
+            
+            <label>Выберите товар:</label>
+            <select id="product">
+                <option value="500">Рубашка (500 руб)</option>
+                <option value="1200">Джинсы (1200 руб)</option>
+                <option value="800">Кроссовки (800 руб)</option>
+            </select>
+            
+            <button onclick="calculate()">Рассчитать стоимость</button>
+            
+            <div id="result"></div>
+        </div>
+    </div>
+
+    <script>
+        function calculate() {
+            // Получаем количество товара
+            const quantity = document.getElementById('quantity').value;
+            
+            // Получаем выбранный товар
+            const productSelect = document.getElementById('product');
+            const price = productSelect.value;
+            const productName = productSelect.options[productSelect.selectedIndex].text;
+            
+            // Рассчитываем общую стоимость
+            const total = quantity * price;
+            
+            // Выводим результат
+            document.getElementById('result').innerHTML = `
+                <h3>Результат:</h3>
+                <p>Товар: ${productName}</p>
+                <p>Количество: ${quantity} шт.</p>
+                <p>Общая стоимость: ${total} руб</p>
+            `;
+        }
+    </script>
+</body>
+</html>
